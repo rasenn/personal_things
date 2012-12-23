@@ -1,0 +1,12 @@
+  <div class="row">
+    <div id="img">
+      <img src="<%= @book.amazon_img %>" />
+    </div>
+    <div id="description">
+      <a href="<%= @book.amazon_url %>"><%= @book.name %></a><br />
+      所持ユーザ：<br />
+      <% @book.users.each do |u| %>
+      &nbsp;&nbsp;&nbsp;<%= link_to u.name, :action => :things_list, :user_id => u.id %><br />
+      <% end %> 
+    </div>
+  </div>

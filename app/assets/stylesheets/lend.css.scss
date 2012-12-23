@@ -1,0 +1,19 @@
+// Place all the styles related to the lend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#table{
+       display:table;
+}
+
+.row {
+  display:table-row;
+}
+                                                                        
+.row>div {
+  display:table-cell;
+  margin:15px;
+  padding:15px;
+  border:10px solid;
+  background-color:#eee;
+}

@@ -1,0 +1,14 @@
+<h2>登録</h2>
+
+<h4><%= @message %></h4>
+
+ISBN(10,13)かAmazonURLを入力してください
+<br /><br >
+<%= form_tag :controller => :lend, :action => :regist_book do %>
+  <%= text_field_tag "param" %><br />
+  <br />
+  <%= submit_tag("登録") %>
+<% end %>
+
+
+<%= link_to "戻る", :controller => :lend, :action => :index %>

@@ -1,0 +1,23 @@
+<h3><%= @message %></h3>
+
+<%= form_tag( {:controller => :lend, :action => :index}, {:method => :get}) do %>
+  <%= text_field_tag "param" %>
+  <%= submit_tag("検索") %>
+<% end %>
+
+<div id="table">
+<% @books.each do |book| %>
+  <div class="row">
+    <div id="img">
+      <img src="<%= book.amazon_img %>" width="100" />
+    </div>
+    <div id="description">
+      <%= link_to book.name, :controller => :lend, :action => :detail_book, :book_id => book.id %><br />
+      所持ユーザ：<br />
+      <% book.users.each do |u| %>
+      &nbsp;&nbsp;&nbsp;<%= link_to u.name, :action => :things_list, :user_id => u.id %><br />
+      <% end %> 
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,12 @@
+<%=current_user.name %>の所持リスト
+
+<% @books.each do |book| %>
+  <div class="row">
+    <div id="img">
+      <img src="<%= book.amazon_img %>" width="100" />
+    </div>
+    <div id="description">
+      <%= link_to book.name, :controller => :lend, :action => :detail_book, :book_id => book.id %>
+    </div>
+  </div>
+<% end %>
