@@ -45,3 +45,6 @@ gem 'rspec-rails', :group => [:development, :test]
 gem 'web-app-theme' 
 gem 'kaminari'
 gem 'amazon_product'
+
+gem 'settingslogic'
+
