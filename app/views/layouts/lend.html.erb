@@ -1,9 +1,24 @@
+<html>
+  <head>
+  <%= stylesheet_link_tag "lend" %>
+  </head>
+  <body>
+    <div id="table">
+      <div class="row">
+        <div id="col1"><%= link_to "一覧画面", :controller => :lend, :action => :index %></div>
+        <div id="col2"><%= link_to "本の登録", :controller => :lend, :action => :regist_book %></div>
+        <div id="cl3"><%= link_to "自分の持っている本の一覧", :controller => :lend, :action => :things_list %></div>
+        <div id="col4">
+          <% if user_signed_in? %>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-          <li><%= link_to "一覧画面", :controller => :lend, :action => :index %></li>
-          <li><%= link_to "本の登録", :controller => :lend, :action => :regist_book %></li>
-          <li><%= link_to "自分の持っている本の一覧", :controller => :lend, :action => :things_list %></li>
-          <li>
-            <% if user_signed_in? %>
-            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-            <% end %>
-          </li>
+
+    
+
+    <%= yield %>
+  </body>
+</html>

@@ -4,7 +4,13 @@ require 'spec_helper'
 describe Book do
   pending "add some examples to (or delete) #{__FILE__}"
 
-  context "が何も登録されていない場合には" do
+  context "どんな状態でも" do
+    it "ISBN10で検索する" do
+      Book.send(:find_amazon_product,"4274068668").should_not be_nil
+    end
+  end
+
+  context "が何も登録されていない場合に" do
     before :each do
       Book.all.each {|b| b.destroy }
     end
