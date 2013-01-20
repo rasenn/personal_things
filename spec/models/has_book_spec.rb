@@ -7,6 +7,10 @@ describe HasBook do
   context "が何もない場合" do
     
   end
-  
+
+
+  context "登録されている場合"
+    
+  end
   
 end

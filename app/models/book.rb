@@ -3,14 +3,14 @@ class Book < ActiveRecord::Base
   has_many :has_books
   has_many :users, :through => :has_books
   
-  attr_accessible :amazon_url, :isbn10, :isbn13, :name
+  attr_accessible :amazon_url, :isbn10, :isbn13, :name, :has_someone
 
   # 検索結果を返す
-  def self.find_book(param)
+  def self.find_book(param=nil)
     if param
-      return Book.where(["ISBN10 = ? or ISBN13 = ? or amazon_url = ? or name like ? ",param,param,param,"%"+param.to_s+"%"])
+      return Book.where(["ISBN10 = ? or ISBN13 = ? or amazon_url = ? or name like ? ",param,param,param,"%"+param.to_s+"%"]).where(:has_someone => true)
     else
-      return Book.find(-1)
+      return Book.where(:has_someone => true)
     end
   end
 
@@ -19,15 +19,18 @@ class Book < ActiveRecord::Base
   # 商品が見つからない場合、引数がない場合、nilを返す
   def self.regist_book(param)
     if param
+      param = param.strip
       books = Book.where(["isbn10 = ? or isbn13 = ? or amazon_url = ?",param,param,param])
 
       # すでに登録されている本の場合、パスする
       if books.count > 0
-        return books[0].id
+        return books[0]
+
       # まだ登録されていない本の場合
       else
         # amazonで商品を検索する
         product = self.find_amazon_product(param)
+
         # 商品が見つかった場合、登録する
         if product
           book = Book.new
@@ -38,7 +41,7 @@ class Book < ActiveRecord::Base
           book.amazon_img = product[4]
 
           book.save
-          return book.id
+          return book
 
         # 商品が見つからない場合nilを返す
         else
@@ -67,6 +70,8 @@ class Book < ActiveRecord::Base
     book.amazon_img = product[4]
     book.save
   end
+
+
 
   private
   # amazon商品の検索

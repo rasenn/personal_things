@@ -6,6 +6,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :name
       t.text :amazon_url, :unique
       t.text :amazon_img
+      
       t.timestamps
     end
   end

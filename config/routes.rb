@@ -5,12 +5,13 @@ BookBelong::Application.routes.draw do
   get "lend/regist_book"
   get "lend/detail_book"
   get "lend/things_list"
+  get "lend/del_my_thing"
 
   post "lend/regist_book"
   post "lend/index"
 
   get "users/sign_up"
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

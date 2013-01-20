@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223133250) do
+ActiveRecord::Schema.define(:version => 20130120023144) do
 
   create_table "books", :force => true do |t|
     t.string   "isbn10"
@@ -20,16 +20,18 @@ ActiveRecord::Schema.define(:version => 20121223133250) do
     t.string   "name"
     t.text     "amazon_url"
     t.text     "amazon_img"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "has_someone", :default => true
   end
 
   create_table "has_books", :force => true do |t|
     t.integer  "user_id"
     t.integer  "book_id"
     t.boolean  "rend_flag"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "has_someone", :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "has_books", ["user_id", "book_id"], :name => "index_has_books_on_user_id_and_book_id", :unique => true

@@ -1,9 +1,11 @@
 <h3><%= @message %></h3>
 
+<div id="search">
 <%= form_tag( {:controller => :lend, :action => :index}, {:method => :get}) do %>
   <%= text_field_tag "param" %>
   <%= submit_tag("検索") %>
 <% end %>
+</div>
 
 <div id="table">
 <% @books.each do |book| %>

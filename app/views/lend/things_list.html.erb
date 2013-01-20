@@ -7,6 +7,9 @@
     </div>
     <div id="description">
       <%= link_to book.name, :controller => :lend, :action => :detail_book, :book_id => book.id %>
+      <% if user_signed_in? %>
+        <%= link_to "削除", :controller => :lend, :action => :del_my_thing, :book_id => book.id %>
+      <% end %>
     </div>
   </div>
 <% end %>

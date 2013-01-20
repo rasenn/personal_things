@@ -7,18 +7,20 @@
       <div class="row">
         <div id="col1"><%= link_to "一覧画面", :controller => :lend, :action => :index %></div>
         <div id="col2"><%= link_to "本の登録", :controller => :lend, :action => :regist_book %></div>
-        <div id="cl3"><%= link_to "自分の持っている本の一覧", :controller => :lend, :action => :things_list %></div>
+        <% if user_signed_in? %>
+        <div id="cl3"><%= link_to "自分の持っている本の一覧", :controller => :lend, :action => :things_list, :user_id => current_user.id %></div>
+        <% end %>
         <div id="col4">
           <% if user_signed_in? %>
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to "log in", :controller => :users, :action => :sign_in %>
           <% end %>
         </div>
       </div>
     </div>
 
-
-    
-
     <%= yield %>
+    
   </body>
 </html>
